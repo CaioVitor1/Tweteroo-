@@ -25,22 +25,28 @@ const lastTweets = function() {
 }
 app.post("/sign-up", (req, res) => { 
         const {username, avatar} = req.body
-        everyUser.push({
-               username,
-               avatar
-       })
-       res.send("OK")
+        if(!username || !avatar) {
+                res.status(400).send("Todos os campos são obrigatórios!");
+                return
+        } else{
+                everyUser.push(req.body)
+                res.send("OK")
+        }
+        
 });
 
 app.post("/tweets", (req, res) => { 
         const {username, tweet} = req.body
-        tweets.unshift({
-                username,
-                tweet
-        })
-        res.send("Ok")
+        if(!username || !tweet) {
+                res.status(400).send("Todos os campos são obrigatórios!");
+                return
+        } else {
+                tweets.unshift(req.body)
+                res.send("Ok")
+        }
  });
  app.get("/tweets", (req, res) => { 
+         
         res.send(lastTweets())
  });
 
