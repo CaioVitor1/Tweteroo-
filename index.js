@@ -9,7 +9,12 @@ const username = ""
 const picture = ""
 let contents = ""
 const everyUsers = [];
-const tweets = [];
+const tweets = [{
+	username: "bobesponja",
+        tweet: "eu amo o hub"
+}];
+
+
 
 const message = {
 	username,
@@ -20,6 +25,11 @@ app.post("/sign-up", (req, res) => {
        everyUsers.push(req.body)
        res.send("Ok")
 });
+
+app.post("/tweets", (req, res) => { 
+        tweets.unshift(req.body)
+        res.send("Ok")
+ });
 
 
 app.listen(5000);
