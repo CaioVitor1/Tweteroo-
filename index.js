@@ -42,12 +42,15 @@ app.post("/tweets", (req, res) => {
                 return
         } else {
                 tweets.unshift(req.body)
-                res.send("Ok")
+                res.status(201).send("OK");  
         }
  });
  app.get("/tweets", (req, res) => { 
-         
         res.send(lastTweets())
  });
-
+ app.get("/tweets/:username", (req, res) => { 
+        const username = req.params.username
+        const tweet = tweets.find(tweet => tweet.username === username);
+        res.send(tweet)
+ });
 app.listen(5000);
