@@ -50,7 +50,7 @@ app.post("/tweets", (req, res) => {
  });
  app.get("/tweets/:username", (req, res) => { 
         const username = req.params.username
-        const tweet = tweets.find(tweet => tweet.username === username);
+        const tweet = tweets.filter(tweet => tweet.username === username);
         res.send(tweet)
  });
 app.listen(5000);
